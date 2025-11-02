@@ -45,7 +45,11 @@ jobs:
         if: runner.os == 'Windows'
         shell: powershell
         run: |
-          choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System' || true
+          try {
+            choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'
+          } catch {
+            Write-Host "choco install failed, continuing..."
+          }
 
       # Make CI scripts executable on Unix-like systems
       - name: Ensure Unix CI script is executable

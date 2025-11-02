@@ -1,0 +1,72 @@
+--= Запит до першого етапу =--
+
+Створи структуру гілок у Git-репозиторії:
+ - master - міститиме фінальний проєкт
+ - develop - міститиме процес розробки проєкту
+ - feature/develop/<task number: feature> - міститиме розробку конкретної частини.
+У корені репозиторію створи файл main.cрр з мінімальною програмою на С++, яка виводить у консоль "Hello World".
+Закоміть зміни у гілку feature/develop/<task number: feature>, створи merge request у гілку develop, і додай у рев'юери викладача.
+Після отримання схвалення виконай merge змін у develop, після чого можна переходити до наступного етапу.
+
+I'll run a few git checks, create the branches and the main.cpp file, and commit the change on the feature branch. Expected outcome: local branches created and commit present on feature/develop/1-feature. After that I'll show next steps to push and open a merge request and how to add the teacher as reviewer (requires a remote). I'll run these terminal commands in the repository folder.
+
+
+git status --porcelain --branch
+I'll create the branches locally, add main.cpp, commit on the feature branch, and push the three branches to the remote. Expected outcome: local branches master, develop, and feature/develop/1-feature created, main.cpp committed on the feature branch, and branches pushed to origin (push may prompt for auth). If push fails, I'll report the error and next steps.
+
+
+cd /Users/mac/Documents/Programing/csad2526KI404LiesnikovMaksymAndriovich15 && git checkout -b develop origin/main && git checkout -b master origin/main && git checkout -b feature/develop/1-feature develop && cat > main.cpp << 'EOF'
+#include <iostream>
+
+int main() {
+    std::cout << "Hello World" << std::endl;
+    return 0;
+}
+EOF
+
+git add main.cpp && git commit -m "feat: add main.cpp Hello World" || true
+
+git push -u origin feature/develop/1-feature && git push -u origin develop && git push -u origin master
+
+git status --porcelain --branch && git log --oneline -n 3
+Progress update: I created local branches master, develop, and feature/develop/1-feature, added main.cpp, and committed it on feature/develop/1-feature. Next I'll push the feature branch and show how to create a merge request on the remote and add the teacher as a reviewer. If you want, I can attempt to open the merge request via the remote's API, but I'll need the remote host (GitHub/GitLab) and appropriate permissions/token. I'll now attempt to push the branches to origin (already attempted for feature via previous command but push may still be required). I'll run git push for all three branches explicitly and capture output.
+
+
+git push -u origin feature/develop/1-feature
+------------------------------
+
+--= Запит до другого етапу =--
+
+Згенерувати наповнення файлу CMakeLists.txt для C++ файлу main.cpp.
+
+I'll help you generate the content for the CMakeLists.txt file for your C++ project. Let me first examine the current files to understand the project structure and requirements.
+Now I can see that you have a simple C++ "Hello World" program in main.cpp and an empty CMakeLists.txt file. I'll generate a proper CMakeLists.txt file for this C++ project.
+Я згенерував повний CMakeLists.txt файл для вашого C++ проекту. Ось що включає цей файл:
+Основні компоненти:
+Мінімальна версія CMake: 3.10 (сучасна та стабільна версія)
+Назва проекту: HelloWorld
+Стандарт C++: C++17 (сучасний стандарт з хорошою підтримкою)
+Виконуваний файл: HelloWorld, який компілюється з main.cpp
+Додаткові функції:
+Вихідна директорія: Виконуваний файл буде створений у папці bin/
+Попередження компілятора: Додано флаги -Wall -Wextra -Wpedantic для GCC/Clang
+Конфігурації збірки:
+Debug: з відлагоджувальною інформацією (-g -O0)
+Release: з оптимізацією (-O2)
+Як використовувати:
+# Створити папку для збірки
+mkdir build
+cd build
+
+# Генерувати Makefile
+cmake ..
+
+# Зібрати проект
+make
+
+# Запустити програму
+./bin/HelloWorld
+
+Цей CMakeLists.txt файл готовий для використання та може бути легко розширений у майбутньому, якщо ви додасте більше файлів або бібліотек до проекту.
+
+------------------------------

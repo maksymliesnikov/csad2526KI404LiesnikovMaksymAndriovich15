@@ -1,3 +1,5 @@
+--= Запит до першого етапу =--
+
 Створи структуру гілок у Git-репозиторії:
  - master - міститиме фінальний проєкт
  - develop - міститиме процес розробки проєкту
@@ -31,3 +33,54 @@ Progress update: I created local branches master, develop, and feature/develop/1
 
 
 git push -u origin feature/develop/1-feature
+------------------------------
+
+--= Запит до другого етапу =--
+
+Згенерувати наповнення файлу CMakeLists.txt для C++ файлу main.cpp.
+
+I'll help you generate the content for the CMakeLists.txt file for your C++ project. Let me first examine the current files to understand the project structure and requirements.
+Now I can see that you have a simple C++ "Hello World" program in main.cpp and an empty CMakeLists.txt file. I'll generate a proper CMakeLists.txt file for this C++ project.
+Я згенерував повний CMakeLists.txt файл для вашого C++ проекту. Ось що включає цей файл:
+Основні компоненти:
+Мінімальна версія CMake: 3.10 (сучасна та стабільна версія)
+Назва проекту: HelloWorld
+Стандарт C++: C++17 (сучасний стандарт з хорошою підтримкою)
+Виконуваний файл: HelloWorld, який компілюється з main.cpp
+Додаткові функції:
+Вихідна директорія: Виконуваний файл буде створений у папці bin/
+Попередження компілятора: Додано флаги -Wall -Wextra -Wpedantic для GCC/Clang
+Конфігурації збірки:
+Debug: з відлагоджувальною інформацією (-g -O0)
+Release: з оптимізацією (-O2)
+Як використовувати:
+# Створити папку для збірки
+mkdir build
+cd build
+
+# Генерувати Makefile
+cmake ..
+
+# Зібрати проект
+make
+
+# Запустити програму
+./bin/HelloWorld
+
+Цей CMakeLists.txt файл готовий для використання та може бути легко розширений у майбутньому, якщо ви додасте більше файлів або бібліотек до проекту.
+
+-------------------------------
+
+--= Запити до третього етапу =--
+
+Створи функцію int add(int a, int b) в math_operations.h та math_operations.cpp
+
+Створи юніт тести в unit_tests.cpp для math_opperaions
+
+Створи юніт тести в unit_tests.cpp для math_opperaions за допомогою фреймворку Google Test.
+
+Додай підтримку Google Test у CMakeLists.txt. Додайте інструкції для створення тестового виконуваного файлу та запуску тестів. Перевіриш ще раз чи запускається юніт тест
+
+додайте інструкції для створення тестового виконуваного файлу та запуску тестів
+
+-------------------------------

@@ -27,3 +27,36 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 else()
     target_compile_options(HelloWorld PRIVATE -O2)
 endif()
+
+# ---------------------------
+# GoogleTest and unit tests
+# ---------------------------
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/heads/main.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+# Create unit_tests executable
+add_executable(unit_tests
+    tests/unit_tests.cpp
+    math_operations.cpp
+)
+
+target_include_directories(unit_tests PRIVATE ${CMAKE_SOURCE_DIR})
+target_link_libraries(unit_tests PRIVATE gtest_main)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(unit_tests PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+add_test(NAME unit_tests COMMAND unit_tests)
+
+set_target_properties(unit_tests PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
